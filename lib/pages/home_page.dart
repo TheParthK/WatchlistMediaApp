@@ -33,6 +33,48 @@ class HomePage extends StatelessWidget {
                 SizedBox(height: dpad.top + 60 + 20,),
                 DiscoverNewWidget(),
 
+                FutureBuilder(
+                  future: APIService.trendingMovies(),
+                  builder: (context, snapshot) => snapshot.hasData?
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const CategoryChip("Trending Movies"),
+                      SizedBox(
+                        height: size.width*0.35*1.3,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children:  [
+                            ...snapshot.data!.asMap().entries.map((entry)=> SimpleBlock(data: entry.value, reduceMargin: true,))
+                          ],
+                        )
+                      ),
+                    ],
+                  ) : const LoadingSkeleton(),
+                ),
+
+
+                FutureBuilder(
+                  future: APIService.popularTv(),
+                  builder: (context, snapshot) => snapshot.hasData?
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const CategoryChip("Popular TV"),
+                      SizedBox(
+                        height: size.width*0.35*1.3,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children:  [
+                            ...snapshot.data!.asMap().entries.map((entry)=> SimpleBlock(data: entry.value, reduceMargin: true,))
+                          ],
+                        )
+                      ),
+                    ],
+                  ) : const LoadingSkeleton(),
+                ),
+
+
 
                 FutureBuilder(
                   future: APIService.topRatedMovies(),
@@ -54,23 +96,6 @@ class HomePage extends StatelessWidget {
                   ) : const LoadingSkeleton(),
                 ),
                 
-
-                CategoryChip("Sci-Fi Movies"),
-                Container(
-                  height: size.width*0.35*1.3,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      SimpleBlock(img: consts.sci3, reduceMargin: true,),
-                      SimpleBlock(img: consts.sci4, reduceMargin: true,),
-                      SimpleBlock(img: consts.sci1, reduceMargin: true,),
-                      SimpleBlock(img: consts.sci2, reduceMargin: true,),
-                    ],
-                  ),
-                ),
-
-
-
 
                 const SizedBox(height: 400,),
 

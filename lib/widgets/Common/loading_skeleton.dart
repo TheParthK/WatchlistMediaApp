@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:watchlist_media/constants/enums.dart';
+import 'package:watchlist_media/services/services.dart';
 import 'package:watchlist_media/widgets/HomePage/category_chip.dart';
 import 'package:watchlist_media/widgets/HomePage/simple_block.dart';
 import 'package:watchlist_media/constants/constants.dart' as consts;
@@ -20,7 +22,7 @@ class LoadingSkeleton extends StatelessWidget {
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: 10,
-              itemBuilder: (context, index) => const SimpleBlock(reduceMargin: true, img: consts.mov1,),
+              itemBuilder: (context, index) => SimpleBlock(reduceMargin: true, data: InfoModal(genreIDs: [], id: '', mediaType: MediaType.movie, originalLang: '', originalTitle: '', overview: '', posterPath: '/e81hXEqhIklX9eCO1ykaYLejvp9.jpg', releaseDate: '', title: '', voteAvg: '', voteCount: ''),),
             ),
           ),
         ],

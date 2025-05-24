@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:watchlist_media/constants/constants.dart' as consts;
+import 'package:watchlist_media/services/services.dart';
 
 class SimpleBlock extends StatelessWidget {
-  final String? img;
+  final InfoModal? data;
   final bool reduceMargin;
-  const SimpleBlock({super.key, this.img, this.reduceMargin = false});
+  const SimpleBlock({super.key, this.data, this.reduceMargin = false});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,8 @@ class SimpleBlock extends StatelessWidget {
       color: Colors.black,
       borderRadius: const BorderRadius.all(Radius.circular(18)),
       gradient: consts.loadingBG,
-      image: img!=null? DecorationImage(image: NetworkImage(img!), fit: BoxFit.cover):null
+      image: data!=null? DecorationImage(image: NetworkImage(consts.fullImgPath(data!.posterPath)), fit: BoxFit.cover):null,
+      // boxShadow: [BoxShadow(blurRadius: 1, color: consts.lightColor, )]
     ),
 
   );

@@ -53,8 +53,6 @@ class DiscoverNewWidget extends StatelessWidget {
             PageView(
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
-              // reverse: true,
-              // padding: EdgeInsets.zero,
               children: [
                 ...snapshot.data!.map((data)=>DiscoverNewImage(data))
               ],

@@ -40,7 +40,7 @@ class NumberdBlock extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.only(left : number > 9 ? size.width*0.35*0.2 :0),
-          child: SimpleBlock(img: consts.fullImgPath(data.posterPath)),
+          child: SimpleBlock(data: data,),
         )
       ],
     );

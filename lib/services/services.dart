@@ -1,5 +1,5 @@
-import 'dart:convert';
 import 'dart:core';
+import 'dart:convert';
 
 
 import 'package:http/http.dart' as http;
@@ -46,9 +46,6 @@ class APIService{
       Uri.parse('https://api.themoviedb.org/3/search/multi?query=$searchTerm'),
       headers: {"Authorization" : "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4YTQxOTA0ZmFlODY4YWRhYmQyMzM3NTJmNGJhMGQxMCIsIm5iZiI6MTc0NzI5NjgyMS43NDMsInN1YiI6IjY4MjVhMjM1NGQ2YzEwMDVhZjc2N2NjMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9VAtQN8vMa8NzQ4WLBHOo9itX3QeJXX3gm79qXUyWXI"}
     );
-
-    print(response.statusCode);
-    print(response.body);
   
     return jsonDecode(response.body);
   }
@@ -76,10 +73,6 @@ class APIService{
           "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4YTQxOTA0ZmFlODY4YWRhYmQyMzM3NTJmNGJhMGQxMCIsIm5iZiI6MTc0NzI5NjgyMS43NDMsInN1YiI6IjY4MjVhMjM1NGQ2YzEwMDVhZjc2N2NjMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9VAtQN8vMa8NzQ4WLBHOo9itX3QeJXX3gm79qXUyWXI"
         }
       );
-
-      print(responseMovie.statusCode);
-      print(responseMovie.body);
-
 
       dynamic dataMovie =  jsonDecode(responseMovie.body);
       dynamic dataTv =  jsonDecode(responseTv.body);
@@ -146,9 +139,6 @@ class APIService{
         }
       );
 
-      print(response.statusCode);
-      print(response.body);
-
       dynamic data = jsonDecode(response.body);
 
       for(dynamic movie in data['results']){
@@ -176,6 +166,91 @@ class APIService{
     return results;
   }
 
+  static Future<dynamic> trendingMovies() async{
+    Uri url = Uri.parse("https://api.themoviedb.org/3/trending/movie/day?language=en-US");
+
+
+    List<InfoModal> results = <InfoModal>[];
+
+    try{
+      final response = await http.get(
+        url,
+        headers: {
+            "accept": "application/json",
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4YTQxOTA0ZmFlODY4YWRhYmQyMzM3NTJmNGJhMGQxMCIsIm5iZiI6MTc0NzI5NjgyMS43NDMsInN1YiI6IjY4MjVhMjM1NGQ2YzEwMDVhZjc2N2NjMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9VAtQN8vMa8NzQ4WLBHOo9itX3QeJXX3gm79qXUyWXI"
+        }
+      );
+
+      dynamic data = jsonDecode(response.body);
+
+      for(dynamic movie in data['results']){
+        results.add(
+          InfoModal(
+            posterPath: movie['poster_path'] as String,
+            originalTitle: movie['original_title'] as String,
+            mediaType: MediaType.movie,
+            title: movie['title'] as String,
+            id: movie['id'].toString(),
+            genreIDs: movie['genre_ids'],
+            overview: movie['overview'] as String,
+            originalLang: movie['original_language'] as String,
+            releaseDate: movie['release_date'] as String,
+            voteAvg: movie['vote_average'].toString(),
+            voteCount: movie['vote_count'].toString()
+          )
+        );
+      }
+
+    } catch(e){
+      print("Error: $e");
+    }
+
+    return results;
+  }
+
+
+  static Future<dynamic> popularTv() async{
+    Uri url = Uri.parse("https://api.themoviedb.org/3/tv/popular?language=en-US&page=1");
+
+
+    List<InfoModal> results = <InfoModal>[];
+
+    try{
+      final response = await http.get(
+        url,
+        headers: {
+            "accept": "application/json",
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4YTQxOTA0ZmFlODY4YWRhYmQyMzM3NTJmNGJhMGQxMCIsIm5iZiI6MTc0NzI5NjgyMS43NDMsInN1YiI6IjY4MjVhMjM1NGQ2YzEwMDVhZjc2N2NjMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9VAtQN8vMa8NzQ4WLBHOo9itX3QeJXX3gm79qXUyWXI"
+        }
+      );
+      print(response.statusCode);
+      print(response.body);
+      dynamic data = jsonDecode(response.body);
+
+    for(var tv in data['results']){
+      results.add(
+          InfoModal(
+            posterPath: tv['poster_path'] as String,
+            originalTitle: tv['original_name'] as String,
+            mediaType: MediaType.tv,
+            title: tv['name'] as String,
+            id: tv['id'].toString(),
+            genreIDs: tv['genre_ids'],
+            overview: tv['overview'] as String,
+            originalLang: tv['original_language'] as String,
+            releaseDate: tv['first_air_date'] as String,
+            voteAvg: tv['vote_average'].toString(),
+            voteCount: tv['vote_count'].toString()
+          )
+        );
+    }
+
+    } catch(e){
+      print("Error: $e");
+    }
+
+    return results;
+  }
 
 
 }

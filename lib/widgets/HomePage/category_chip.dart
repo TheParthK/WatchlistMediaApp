@@ -15,7 +15,7 @@ class CategoryChip extends StatelessWidget {
         margin: const EdgeInsets.fromLTRB(12, 22, 12, 10),
         // margin: const EdgeInsets.fromLTRB(12, 24, 12, 18),
         // margin: const EdgeInsets.fromLTRB(12, 28, 12, 8),
-        padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+        padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
         decoration: const BoxDecoration(
           // color: consts.lightColor,
           // borderRadius: const BorderRadius.all(Radius.circular(25)),
