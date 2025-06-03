@@ -1,16 +1,23 @@
-# watchlist_media
+# WatchlistMedia App
 
-A new Flutter project.
+A all in one place to add movies to your watchlist, write reviews, get recommendations and get other people's reviews.
 
-## Getting Started
+Uses the entirety of the TMDB API.
 
-This project is a starting point for a Flutter application.
+A Flutter project.
 
-A few resources to get you started if this is your first Flutter project:
+Both the WatchlistMedia logos are designed by me.
+<table>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/334b37db-3efb-4445-a74c-2be60a48906b"></td>
+    <td><img src="https://github.com/user-attachments/assets/8b73621b-5626-43c9-a802-29f6630ff3b0"></td>
+  </tr>
+</table>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## ScreenShots
+<table>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/8f3d2954-1120-4c44-aa92-c03b31d1bafa"></td>
+    <td><img src="https://github.com/user-attachments/assets/f4b03906-12c1-49a3-aa2b-b0a935ebd43b"></td>
+    <td><img src="https://github.com/user-attachments/assets/04c49177-d2ff-44d7-977e-bdcde22281cb"></td>
+  </tr>
