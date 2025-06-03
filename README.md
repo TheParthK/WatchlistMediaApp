@@ -4,6 +4,8 @@ A all in one place to add movies to your watchlist, write reviews, get recommend
 
 Uses the entirety of the TMDB API.
 
+Coming Soon: Auth, Search Menu
+
 A Flutter project.
 
 Both the WatchlistMedia logos are designed by me.
@@ -14,7 +16,7 @@ Both the WatchlistMedia logos are designed by me.
   </tr>
 </table>
 
-## ScreenShots
+## Screenshots
 <table>
   <tr>
     <td><img src="https://github.com/user-attachments/assets/8f3d2954-1120-4c44-aa92-c03b31d1bafa"></td>
